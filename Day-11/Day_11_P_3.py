@@ -31,7 +31,7 @@ Sample Output:
 3
 '''
 #SOL 1 In O(N*2) Complexity
-
+'''
 from itertools import chain as chn
 from collections import Counter as cnt
 def smallestCommonElement(mat):
@@ -44,4 +44,43 @@ for i in range(n):
     mat.append(l)
 if __name__=="__main__":
     print(smallestCommonElement(mat))
+'''
 
+import math, sys
+def binarySearch(l, ele):
+    
+    s = 0
+    e = len(l)-1
+    
+    while s <= e:
+        
+        mid = math.ceil((s+e)/2)
+        
+        if l[mid] == ele:
+            return True
+        
+        if l[mid] > ele:
+            e = mid-1
+            
+        if l[mid] < ele:
+            s = mid+1
+            
+    return False
+
+b, n = map(int, input().split())
+L = []
+for i in range(b):
+    L.append(list(map(int, input().split())))
+
+j = 1
+for i in L[0]:
+    while j < b:
+        if not binarySearch(L[j], i):
+            break
+        j += 1
+    if j == b:
+        print(i)
+        exit(0)
+    else:
+        j = 1
+print(-1)
