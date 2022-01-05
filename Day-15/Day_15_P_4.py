@@ -136,3 +136,24 @@ int main(){
     
 }
 '''
+
+
+n,k=map(int,input().split())
+nums=list(map(int,input().split()))[:k]
+len_nums = len(nums)
+nums.sort()
+max_freq = 1
+freq = 1
+left = 0
+ops = k
+for right in range(1, len_nums):
+    ops -= (nums[right] - nums[right - 1]) * freq
+    freq += 1
+    if ops >= 0:
+        max_freq = max(max_freq, freq)
+    else:
+        while ops < 0:
+            ops += nums[right] - nums[left]
+            left += 1
+            freq -= 1
+print(max_freq)
