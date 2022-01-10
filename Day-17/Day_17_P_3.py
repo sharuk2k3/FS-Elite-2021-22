@@ -54,5 +54,33 @@ Sample Output-2:
 
 '''
 
-#SOLUTION
+#CPPSOLUTION
 
+'''
+#include<bits/stdc++.h>
+using namespace std;
+
+int quadraples(vector<int>& nums)
+{
+    int ans=0;
+    unordered_map<int,int>mp;
+    for(int i=0;i<nums.size();i++)
+      for(int j=i+1;j<nums.size();j++)
+          mp[nums[i]*nums[j]]++;
+
+    for(auto x:mp)
+    {
+      int k=x.second;
+      ans+=4*k*(k-1);
+    }
+    return ans;
+}
+
+int main()
+{
+    int n; cin>>n;
+    int a[n];
+    for(int i=0;i<n;i++) cin>>a[i];
+    cout<<quadraples(n,a);
+}
+'''
