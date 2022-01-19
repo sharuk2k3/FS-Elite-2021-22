@@ -10,9 +10,3 @@
 | Backtracking          | Segment Tree        |
 | Breadth First Search  | Binary Indexed Tree |
 | Sorting               | Stacks & Queues, Hash Table, Heap |
-
-
-- git add .
-- git commit -m "Message"
-- git push
-
