@@ -62,11 +62,47 @@ bc_def
 
 #Solution
 
-def Paper(s,a,b):
+def phrasePaper(n,m,sl,s):
+    
+    l = [["" for i in range(m)] for j in range(n)]
+
+    c,p,length,q,f,leng = 0,0,0,0,0,0
+    
+    for i in range(n):
+        for j in range(m):
+            f = 0
+            length = len(s[p])
+            if m-j >= (length-leng):
+                if q == length:
+                    f = 1
+                    p += 1
+                    q = 0
+                    leng = 0
+                if p == sl:
+                    c += 1
+                    p = 0
+                if not f:
+                    l[i][j] = s[p][q]
+                    leng += 1
+                    q += 1
+          
+    length = len(s[-1])
+    if "".join(l[-1][m-length:]) == s[-1]:
+        c += 1
+    print(c)
+
+n, m, sl = map(int, input().split())
+s = input().split()
+print(phrasePaper(n,m,sl,s))
+
+
+'''
+def phrasePaper(s,a,b):
     n=a*b
     m=len(s)+1
     value=n//m
     return value
 a,b,c=map(int,input().split())
 s=input()
-print(Paper(s,a,b))
+print(phrasePaper(s,a,b))
+'''
