@@ -18,4 +18,4 @@ KEVIN
 */
 
 
-select ename from emp where hiredate between '1980-01-01' and '1996-01-01';
+select distinct(ename) from emp where hiredate between '1980-01-01' and '1997-01-01';
