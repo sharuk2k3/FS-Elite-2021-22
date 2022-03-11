@@ -13,5 +13,4 @@ CTC
 
 */
 
-/*select 12*sum(sal+ifnull(comm,0)) as CTC from emp where comm is null*/
-select 12*sum(sal+comm) as CTC from emp where comm is null or comm=0;
+select 12*sum(sal+ifnull(comm,0)) as CTC from emp;
