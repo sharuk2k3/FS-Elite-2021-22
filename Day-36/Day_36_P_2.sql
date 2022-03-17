@@ -1,0 +1,12 @@
+/*
+Write an SQL query to display the names of employee from department number 10 
+with salary greater then that of all employee working in other departments.
+
+Sample Output:
+-------------
+ename   sal       deptno                                                                                                  
+CLARK   2450.00   10                                                                                                      
+
+
+*/
+select ename,sal,deptno from emp where deptno = 10 and sal > (select max(sal) from emp where deptno != 10);
