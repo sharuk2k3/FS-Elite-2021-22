@@ -135,3 +135,44 @@ Since there are no coins available in the grid, the game ends and Player2 has 0 
 Thus, total number of coins collected by Player1 is 3 and Player2 is 0.
 
 '''
+
+def coinsCollected(n,grid):
+    player1 = 0
+    player2 = 0
+    for i in range(n):
+        for j in range(n):
+            if grid[i][j] == 'C':
+                player1 += 1
+                grid[i][j] = 'N'
+                if i-1 >= 0 and grid[i-1][j] == 'C':
+                    player1 += 1
+                    grid[i-1][j] = 'N'
+                if i+1 < n and grid[i+1][j] == 'C':
+                    player1 += 1
+                    grid[i+1][j] = 'N'
+                if j-1 >= 0 and grid[i][j-1] == 'C':
+                    player1 += 1
+                    grid[i][j-1] = 'N'
+                if j+1 < n and grid[i][j+1] == 'C':
+                    player1 += 1
+                    grid[i][j+1] = 'N'
+            if grid[i][j] == 'N':
+                if i-1 >= 0 and grid[i-1][j] == 'C':
+                    player2 += 1
+                    grid[i-1][j] = 'N'
+                if i+1 < n and grid[i+1][j] == 'C':
+                    player2 += 1
+                    grid[i+1][j] = 'N'
+                if j-1 >= 0 and grid[i][j-1] == 'C':
+                    player2 += 1
+                    grid[i][j-1] = 'N'
+                if j+1 < n and grid[i][j+1] == 'C':
+                    player2 += 1
+                    grid[i][j+1] = 'N'
+    print(player1,player2)
+
+n=int(input())
+grid=[]
+for i in range(n):
+    grid.append(input())
+print(coinsCollected(n,grid))

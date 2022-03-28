@@ -165,3 +165,12 @@ W2 1
 W3 1
 
 '''
+
+def worker(n,m,tasks):
+
+
+n=int(input())
+m=int(input())
+tasks=[]
+for i in range(m):
+    tasks.append(input().split())

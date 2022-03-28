@@ -1,3 +1,4 @@
+/*
 '''
 
 Dice Game
@@ -82,3 +83,49 @@ Explanation
 For Test case 1, we have S as 3 and m as 2. So, the number generated on the dice is 1 and 2. And the possible ways to get the sum as 3 from 1 and 2 are (1,1,1), (1,2) and (2,1). So, the output here is 3.
 
 '''
+
+
+#Solution:
+*/
+
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int get_ans(int s,int m,vector<vector<int>>& dp){
+
+    if(s==0){
+        return 1;
+    }
+    
+    if(s<0){
+        return 0;
+    }
+    if(dp[s][m]!=-1){
+        return dp[s][m];
+    }
+    
+    int count = 0;
+    for(int i=1;i<=m;i++){
+       count += get_ans(s-i,m,dp);
+    }
+    
+    return dp[s][m] = count;
+    
+}
+
+int main(){
+    
+    int t;
+    cin>>t;
+    
+    while(t--){
+        
+        int s,m;
+        cin>>s>>m;
+        vector<vector<int>> dp(s+1,vector<int>(m+1,-1));
+        int ans = get_ans(s,m,dp);
+        cout<<ans<<endl;
+    }
+    
+}

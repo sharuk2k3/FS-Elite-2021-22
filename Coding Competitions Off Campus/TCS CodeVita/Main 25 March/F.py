@@ -384,3 +384,34 @@ X 0 X X X 0 X X
 So, the individual will get stuck at position (1, 2), and whatever path one takes at T6, one will get infected. Even if one takes an altogether different path, right from T0, one will still get infected. So, the output in this case will be "Escape not possible".
 
 '''
+
+def main():
+    grid = [[0 for _ in range(m)] for _ in range(n)]
+    for source in sources:
+        grid[source[0]][source[1]] = 1
+    if grid[start[0]][start[1]] == 1:
+        print("Escape not possible")
+    else:
+        for i in range(t):
+            for j in range(n):
+                for k in range(m):
+                    if grid[j][k] == 1:
+                        if j-1 >= 0:
+                            grid[j-1][k] = 1
+                        if j+1 < n:
+                            grid[j+1][k] = 1
+                        if k-1 >= 0:
+                            grid[j][k-1] = 1
+                        if k+1 < m:
+                            grid[j][k+1] = 1
+            print("Escape possible")
+            break
+
+n, m = map(int, input().split())
+r = int(input())
+sources = []
+for _ in range(r):
+    sources.append(list(map(int, input().split())))
+t = int(input())
+start = list(map(int, input().split()))
+main()
