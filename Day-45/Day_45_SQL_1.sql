@@ -1,0 +1,13 @@
+/*
+Write a query to display the job groups having total salary greater than 
+the maximum salary for managers.
+
+Sample Output:
+---------------
+job         sum(sal)                                                                                                        
+CLERK       4150.00                                                                                                         
+PRESIDENT   5000.00                                                                                                 
+
+*/
+select job,sum(sal) from emp group by job having sum(sal)>
+(select max(sal) from emp where job='MANAGER');

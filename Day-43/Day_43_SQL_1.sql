@@ -11,3 +11,5 @@ deptno   ename    sal       job         Net Salary
 */
 
 select deptno, ename, sal, job, sal + comm as net_salary from emp where sal + comm = (select max(sal + comm) from emp) and sal + comm < (select max(sal + comm) from emp);
+
+
