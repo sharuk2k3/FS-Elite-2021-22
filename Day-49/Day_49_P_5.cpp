@@ -1,3 +1,4 @@
+/*
 '''
 
 Given N satellite stations, numbered 1 to N.
@@ -61,4 +62,59 @@ Sample Output-3:
 7
 
 
-'''
+'''*/
+
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<pair<int,int>> ar[10005];
+
+
+int main()
+{
+    int n,k,e;
+    cin >> n >> k >> e;
+    
+    
+    for(int i=0;i<e;i++)
+    {
+        int s,d,t;
+        cin >> s >> d >> t;
+        
+        ar[s].push_back({d,t});
+    }
+    
+    priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>pq;
+    pq.push({0,k});
+    int cnt=0;
+    int ans=0;
+    
+    vector<int> vis(n+1,0);
+    
+    while(pq.size())
+    {
+        auto temp = pq.top();
+        pq.pop();
+        
+        int node=temp.second;
+        int dist=temp.first;
+        
+        if(vis[temp.second]) continue;
+        
+        vis[node]=1;
+        ans = dist;
+        cnt++;
+        
+        for(auto child : ar[node])
+        {
+            if(!vis[child.first])
+            {
+                pq.push({ans+child.second,child.first});
+            }
+        }
+    }
+    
+    
+    if(cnt<n) cout << -1 << endl;
+    else cout << ans << endl;
+}
