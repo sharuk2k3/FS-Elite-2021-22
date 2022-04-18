@@ -10,4 +10,4 @@
 | Backtracking          | Segment Tree        |
 | Breadth First Search  | Binary Indexed Tree |
 | Sorting               | Stacks & Queues, Hash Table, Heap |
-| MultiThreading        |                     |
+| MultiThreading        | Priority queue      |
