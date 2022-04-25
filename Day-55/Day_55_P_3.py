@@ -101,6 +101,6 @@ def spellchecker(wordlist, queries):
 
     return res
 
-wordlist=list(map(str,input().split()))
-queries=list(map(str,input().split()))
+wordlist=list(map(str,input().split(",")))
+queries=list(map(str,input().split(",")))
 print(spellchecker(wordlist,queries))
