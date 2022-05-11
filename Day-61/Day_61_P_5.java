@@ -43,7 +43,32 @@ hello
 
 */
 
-
-public class Day_61_P_5 {
-    
+import java.util.*;
+import java.util.stream.Stream;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+public class Day_61_P_5{
+    public static void main(String args[]){
+        Scanner sc=new Scanner(System.in);
+        List<String>exc=new ArrayList<>();
+        String inp[]=sc.nextLine().split("[\\s@&.*%:'?#|$+-,]+");
+        String arr[]=sc.nextLine().split(" ");
+        for(int i=0;i<arr.length;i++){
+            exc.add(arr[i]);
+        }
+        Arrays.stream(inp)
+            .map(x->x.toLowerCase())
+            .collect(Collectors.groupingBy(Function.identity(),Collectors.counting()))
+            .entrySet()
+            .stream()
+            .filter(x->!exc.contains(x.getKey()))
+            .sorted((x1,x2)->{
+                return (int)(x2.getValue()-x1.getValue());
+            })
+            .limit(1)
+            .map(x->{ 
+                return x.getKey(); 
+            })
+            .forEach(System.out::print);
+    }
 }

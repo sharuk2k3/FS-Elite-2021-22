@@ -42,6 +42,24 @@ Sample Output-2:
 */
 
 
-public class Day_61_P_2 {
-    
+import java.util.*;
+import java.util.stream.Stream;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+public class Day_61_P_2{
+    public static void main(String args[]){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        List<Integer>arr=new ArrayList<>();
+        for(int i=0;i<n;i++){
+            arr.add(sc.nextInt());
+        }
+        List<Integer>ans=
+            IntStream.rangeClosed(1,n)
+            .boxed()
+            .filter(e-> !arr.contains(e))
+            .collect(Collectors.toList());
+        System.out.println(ans);
+    }
 }

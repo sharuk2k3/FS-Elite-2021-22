@@ -36,6 +36,17 @@ s'tI yM efiL
 
 */
 
-public class Day_61_P_3 {
-    
+import java.util.*;
+import java.util.stream.Stream;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+public class Day_61_P_3{
+    public static void main(String args[]){
+        Scanner sc=new Scanner(System.in);
+        String s=sc.nextLine();
+        String ans=Stream.of(s.split(" "))
+        .map(x->new StringBuilder(x).reverse())
+        .collect(Collectors.joining(" "));
+        System.out.println(ans);
+    }
 }

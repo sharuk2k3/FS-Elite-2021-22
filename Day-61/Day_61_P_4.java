@@ -42,6 +42,23 @@ Sample Output-2:
 */
 
 
-public class Day_61_P_4 {
-    
+import java.util.*;
+import java.util.stream.Stream;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+public class Day_61_P_4{
+    public static void main(String args[]){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int arr[]=new int[n];
+        String inp[]=sc.next().split(",");
+        for(int i=0;i<n;i++){
+            arr[i]=Integer.parseInt(inp[i]);
+        }
+        List<Integer>ans=Arrays.stream(arr)
+            .boxed()
+            .filter(x->x%2==0)
+            .collect(Collectors.toList());
+        System.out.println(Arrays.stream(arr).boxed().filter(x->x%2==1).collect(Collectors.toCollection(()->ans)));
+    }
 }
