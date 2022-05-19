@@ -90,7 +90,7 @@ public class Day_64_P_2
   }
 }
 
-*/
+*//*
 class Day_64_P_2 {
     public int numEnclaves(int[][] grid) {
       int count = 0;
@@ -152,4 +152,46 @@ class Day_64_P_2 {
             for (j = 0; j < n; j++)
                 grid[i][j] = sc.nextInt ();
   }
+}*/
+
+//Solution
+
+
+
+import java.util.*;
+
+class Day_64_P_2{
+    static int[][] dirs = {{0,1},{0,-1},{1,0},{-1,0},{1,-1},{-1,1},{-1,-1},{1,1}};
+    static int dfs(int[][] grid,int i,int j){
+        if(i < 0 || i >= grid.length || j < 0 || j >= grid[0].length || grid[i][j]==0) return 0;
+        grid[i][j] = 0;
+        int c = 1;
+        for(int[] dir : dirs){
+            c += dfs(grid,i+dir[0],j+dir[1]);
+        }
+        return c;
+    }
+    
+    public static void main(String args[]){
+        Scanner sc = new Scanner(System.in);
+        int m = sc.nextInt();
+        int n = sc.nextInt();
+        int[][] grid = new int[m][n];
+        
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                grid[i][j] = sc.nextInt();
+            }
+        }
+        int max_ans = 0;
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if(grid[i][j] == 1){
+                    int count = dfs(grid,i,j);
+                    max_ans = Math.max(max_ans,count);
+                }
+            }
+        }
+        System.out.println(max_ans);
+    }
 }
