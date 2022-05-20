@@ -80,8 +80,20 @@ import java.util.*;
 
 class Day_65_P_1
  {
-	public Map<String, Long> numOfMaleAndFemaleStudents(List<Student> StudentList){
+	public Map<String, Integer> numOfMaleAndFemaleStudents(List<Student> StudentList){
         //Implement your code here
+        Map<String,Integer> mp  = new HashMap<String,Integer>();
+        for(int i=0;i<StudentList.size();i++){
+            if(StudentList.get(i).getGender()=="Male"){
+                mp.put("Male",mp.getOrDefault("Male",0)+1);
+            }
+        }
         
+        for(int i=0;i<StudentList.size();i++){
+             if(StudentList.get(i).getGender()=="Female"){
+                mp.put("Female",mp.getOrDefault("Female",0)+1);
+             }
+        }
+        return mp;
 }
 }
