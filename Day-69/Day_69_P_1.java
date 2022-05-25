@@ -79,6 +79,59 @@ So, the minimized workload is 8 tasks.
 
 
 
-public class Day_69_P_1 {
-    
+import java.util.*;
+
+class  Day_69_P_1{
+    //static PriorityQueue<Integer> mainpq = new PriorityQueue<>(Collections.reverseOrder());
+    static boolean isPossible(int[] arr,int curMax,int maxOperations){
+        /*PriorityQueue<Integer> queue = new PriorityQueue<>(mainpq);
+        int x = 0;
+        while(queue.peek()>curMax){
+            int top = queue.remove();
+            queue.add(curMax);
+            queue.add(top-curMax);
+            x++;
+            if(x>maxOperations)
+                return false;
+        }
+        return x<=maxOperations;*/
+        int x = 0;
+        for(int i=0;i<arr.length;i++){
+            if(arr[i]>curMax){
+                if(arr[i]%curMax==0){
+                    x += arr[i]/curMax-1;
+                }
+                else
+                    x += arr[i]/curMax;
+            }
+            if(x>maxOperations)
+                return false;
+        }
+        return x<=maxOperations;
+    }
+    public static void main(String... args){
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int p = sc.nextInt();
+        int[] arr = new int[n];
+        int max = Integer.MIN_VALUE;
+        for(int i=0;i<n;i++){
+            arr[i] = sc.nextInt();
+            max = Math.max(max,arr[i]);
+            //mainpq.add(arr[i]);
+        }
+        int l = 1,h=max;
+        int ans = -1;
+        while(l<=h){
+            int mid = (l+h)/2;
+            if(isPossible(arr,mid,p)){
+                h = mid-1;
+                ans = mid;
+            }
+            else{
+                l = mid+1;
+            }
+        }
+        System.out.print(ans);
+    }
 }

@@ -83,6 +83,47 @@ Now the word-1 is transformed to word-2 completely, so return "true".
 
 */
 
-public class Day_69_P_2 {
-    
+import java.util.*;
+
+class Day_69_P_2 {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        String str1 = sc.next();
+        String str2 = sc.next();
+        int n = sc.nextInt();
+        HashSet<Integer> set = new HashSet<>();
+        for(int i=0;i<str1.length();i++){
+            char c1 = str1.charAt(i);
+            char c2 = str2.charAt(i);
+            if(c1==c2){
+                continue;
+            }
+            int diff = Math.max(c1,c2)-Math.min(c1,c2);
+            boolean flag = false;
+            int x = 0;
+            while(true){
+                int step = 0;
+                if(c1<c2){
+                    step = x*26+diff;
+                }
+                else{
+                    step = x*26+(26-diff);
+                }
+                System.out.println(c1+" "+c2+" "+step);
+                if(step<=n && !set.contains(step)){
+                    set.add(step);
+                    flag = true;
+                    break;
+                }
+                if(step>n)
+                    break;
+                x++;
+            }
+            if(!flag){
+                System.out.print(false);
+                return;
+            }
+        }
+        System.out.print(true);
+    }
 }

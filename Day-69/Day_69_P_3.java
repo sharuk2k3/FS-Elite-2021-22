@@ -48,6 +48,54 @@ Sample Output-2:
 */
 
 
-public class Day_69_P_3 {
-    
+
+import java.util.*;
+
+/*
+class BinaryTreeNode{
+	public int data; 
+	public BinaryTreeNode left, right; 
+	public BinaryTreeNode(int data){
+		this.data = data; 
+		left = null; 
+		right = null; 
+	}
+}
+*/
+
+class  Day_69_P_3 {
+    static HashMap<Integer,Integer> map = new HashMap<>();
+    static int sum(BinaryTreeNode root){
+        if(root==null)
+            return 0;
+        int x = root.data;
+        x += sum(root.left);
+        x += sum(root.right);
+        map.put(x,map.getOrDefault(x,0)+1);
+        return x;
+    }
+    public List<Integer> findFrequentSum(BinaryTreeNode root) {
+        //Implement Your Code here
+        int dummy = sum(root);
+        Iterator itr = map.keySet().iterator();
+        TreeMap<Integer,List<Integer>> resMap = new TreeMap<>();
+        while(itr.hasNext()){
+            Integer a = (Integer)itr.next();
+            int k = map.get(a);
+            List<Integer> arr;
+            if(resMap.containsKey(k)){
+                arr = resMap.get(k);
+                arr.add(a);
+            }
+            else{
+                arr = new ArrayList<>();
+                arr.add(a);
+                resMap.put(k,arr);
+            }
+        }
+        List<Integer> res = resMap.get(resMap.lastKey());
+        //System.out.println(res);
+        Collections.sort(res);
+        return res;
+    }
 }
