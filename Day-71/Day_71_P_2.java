@@ -1,5 +1,6 @@
 /*
 
+
 A binary word Bn is formed as follows:
     B[1] = "0"
     B[i+1] =  B[i] $ "1" $ reverse(complement(B[i])) for i > 1

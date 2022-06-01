@@ -1,5 +1,6 @@
 /*
 
+
 Keerthilal wants to try his luck in Diamonds business. 
 He decides to buy and sell diamonds. 
 

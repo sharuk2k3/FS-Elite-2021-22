@@ -1,5 +1,6 @@
 /*
 
+
 Arjun wants to build some homes in a land of size R*C.
 He wanted to construct homes in rectangular shape.
 The place which is remained will be used for gradening.

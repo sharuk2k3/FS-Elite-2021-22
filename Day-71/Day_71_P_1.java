@@ -1,5 +1,6 @@
 /*
 
+
 A set of computers connected with each other and formed a network with the 
 following rule, one computer can directly connected with atmost two computers only.
 Each computer is assigned with an ID, the computer ID's may be repeated.
