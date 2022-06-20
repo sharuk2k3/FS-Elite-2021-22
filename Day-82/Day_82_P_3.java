@@ -1,0 +1,88 @@
+/* 
+Preethi is playing with strings. She is given 2 strings. 
+Preethi can remove any number of characters from 2 strings such that 2 strings 
+to be equal after removal (Sequence of characters shouldn't change).
+Find the smallest ASCII sum possible for the removed characters.
+
+Input Format:
+-------------
+Line-1: Two space seperated strings
+
+Output Format:
+--------------
+return an integer , represents ASCII sum with the given constraints.
+
+Sample Input-1:
+---------------
+treat create
+
+Sample Output-1:
+----------------
+316
+
+Explanation:
+-------------
+Remove 't' in string1 and 'c' and 'e' in string 2. so sum= 116+99+101=316
+
+
+Sample Input-2:
+---------------
+interest pintrest
+
+Sample Output-2:
+----------------
+213
+
+Explanation:
+-------------
+Remove 'e' in string1 and p in string2. so sum=101+112=213
+
+ */
+
+import java.util.*;
+
+class Day_82_P_3{
+    static int DFS(int i,int j,String str1,String str2,int[][] DP){
+        if(i>=str1.length() && j>=str2.length())
+            return 0;
+        int res = 0;
+        if(i>=str1.length()){
+            for(int a=j;a<str2.length();a++){
+                res += (int)str2.charAt(a);
+                
+            }
+            return res;
+            
+        }
+        if(j>=str2.length()){
+            for(int a=i;a<str1.length();a++){
+                res += (int)str1.charAt(a);
+                
+            }
+            return res;
+            
+        }
+        if(DP[i][j]!=-1)
+            return DP[i][j];
+        if(str1.charAt(i)==str2.charAt(j)){
+            return DP[i][j] = DFS(i+1,j+1,str1,str2,DP);
+            
+        }
+        int x = (int)str1.charAt(i)+DFS(i+1,j,str1,str2,DP);
+        int y = (int)str2.charAt(j)+DFS(i,j+1,str1,str2,DP);
+        return DP[i][j]=Math.min(x,y);
+        
+    }
+    public static void main(String... args){
+        Scanner sc = new Scanner(System.in);
+        String str1 = sc.next();
+        String str2 = sc.next();
+        int[][] DP = new int[str1.length()][str2.length()];
+        for(int[] t:DP)
+        Arrays.fill(t,-1);
+        int res = DFS(0,0,str1,str2,DP);
+        System.out.print(res);
+        
+    }
+    
+}
