@@ -91,7 +91,7 @@ def refill(n,t,v,l):
         else:
             t-=l[i]
         i+=1
-        if l[i]>v:
+        if l[j]>v:
             res+=1
             v=vamsi-l[j]
         else:
