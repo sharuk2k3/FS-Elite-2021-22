@@ -100,8 +100,11 @@ def refill(n,t,v,l):
     #x=max(t,v)
     if i==j:
         x=max(t,v)
-        if x>sp[i]:
+        if x>l[i]:
             res+=1
+        else:
+            if x<l[i]:
+                res+=1
     return res
 
 if __name__ == '__main__':
