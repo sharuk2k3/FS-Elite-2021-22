@@ -1,5 +1,4 @@
 '''
-
 Pramod is planning to design a program, which helps to create 
 the IP addresses posssible from a given string S, 
 where each IP address should be valid.
@@ -54,9 +53,6 @@ Sample Input-3:
 Sample Output-3:
 ----------------
 [0.25.50.255, 0.255.0.255]
-
-
-
 '''
 
 #Solution:

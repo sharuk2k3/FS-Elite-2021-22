@@ -1,5 +1,4 @@
 '''
-
 You are given a set of releases of a software and you are asked to find the most
 recent release. There may be multiple checkins of the software in a given branch. 
 Each branch may also have sub branches. For example release 3-5-4 refers to the 
@@ -36,10 +35,6 @@ Sample Input-2:
 Sample Output-2:
 ----------------
 3-6
-
-
-
-
 '''
 
 #Solution:

@@ -1,6 +1,4 @@
 '''
-
-
 Naresh is working on expression of words.
 If you give him an expression like, [p,q,r]s[t,u],
 Naresh will form the words like as follows : [pst, psu, qst,qsu, rst, rsu]
@@ -47,10 +45,6 @@ Sample Input-3:
 Sample Output-3:
 ----------------
 [xyzab, xyzac]
-
-
-
-
 '''
 
 #Solution:
