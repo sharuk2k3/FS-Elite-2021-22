@@ -1,0 +1,106 @@
+'''
+
+Few people are playing Dart Game, where dartboard is square in shape with size,
+100*100, bottom left corner is [0,0] and top right corner is [99,99].
+
+The game is played as follows:
+There are two operations in this game,
+ 1- Once the player throws the dart, we will record the hit position as [x,y] 
+    in a list.
+ 2- We will select one check point, and checks the number of ways to choose 
+    three points from the recorded list, such that the three points and 
+    the check point form a square with positive area
+
+NOTE: A edges of the square are all the same length and are either parallel 
+      or perpendicular to the left border and bottom border of the board.
+
+Your task is to implement the following:
+
+create a class "CountSquares", and the methods in it are,
+    public void record(int[] hit) : record the dart position on the board.
+    public int count(int[] check) : return the number of sqaures possible.
+
+
+Input Format:
+-------------
+Line-1: Space separated integers, Operations[], only 1's and 2's.
+        1 indiactes record the position, 2 indicates count the squares.
+Line-2: Comma separated positions, each postions is two space separated
+        integers, Dart position or Check point.
+
+Output Format:
+--------------
+Print the space separated integers, count of squares for each Operation-2.
+
+
+Sample Input-1:
+---------------
+1 1 1 2 2 1 2
+3 10,11 2,3 2,11 10,14 8,11 2,11 10
+
+Sample Output-1:
+----------------
+1 0 2
+
+Explanation: 
+------------
+Look at the hint for understanding.
+
+
+
+
+'''
+#Solution Java:
+'''
+
+import java.util.*;
+
+class CountSquares{
+    static int[][] dirs = {{1,1},{1,-1},{-1,1},{-1,-1}};
+    HashMap<String,Integer> map = new HashMap<>();
+    String makeString(int[] c){
+        return c[0]+" "+c[1];
+    }
+    public void record(int[] hit){
+        String s = makeString(hit);
+        map.put(s,map.getOrDefault(s,0)+1);
+    }
+    int get(int[] cur,int side,int a,int b){
+        int[] od = {cur[0]+(a*side),cur[1]+(b*side)};
+        if(od[0]<0 || od[0]>99 || od[1]<0 || od[1]>99 || !map.containsKey(makeString(od)))
+            return 0;
+        int[] c1 = {cur[0],od[1]};
+        int[] c2 = {od[0],cur[1]};
+        return map.getOrDefault(makeString(c1),0)*map.getOrDefault(makeString(c2),0)*map.getOrDefault(makeString(od),0);
+    }
+    public int count(int[] check){
+        int res = 0;
+        for(int i=1;i<100;i++){
+            for(int[] dir:dirs){
+                res += get(check,i,dir[0],dir[1]);
+            }
+        }
+        return res;   
+    }
+}
+class main{
+    public static void main(String... args){
+        Scanner sc = new Scanner(System.in);
+        String[] operations = sc.nextLine().split(" ");
+        String[] pairs = sc.nextLine().split(",");
+        CountSquares obj = new CountSquares();
+        for(int i=0;i<operations.length;i++){
+            int[] cur = Arrays.stream(pairs[i].split(" ")).mapToInt(Integer::parseInt).toArray();
+            if(operations[i].equals("1")){
+                obj.record(cur);  
+            }
+            else{
+                int x = obj.count(cur);
+                System.out.print(x+" ");
+            }
+        }
+    }
+}
+
+
+'''
